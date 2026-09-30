@@ -28,6 +28,10 @@ And check the linters pass with [`prek`](./.pre-commit-config.yaml) before mergi
 
 --->
 
+## Production
+
+Running on GAE13. Deploy with:
+
 ```
 docker compose up -d --build
 ```
