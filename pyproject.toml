@@ -7,7 +7,14 @@ name = "camino-pharmacy-dashboard"
 version = "0.1.0"
 description = "A Dash dashboard for pharmacy data served by the Camino datalake"
 requires-python = ">=3.13"
-dependencies = ["dash>=2.17.0", "pandas", "plotly", "duckdb", "gunicorn"]
+dependencies = [
+    "dash>=2.17.0",
+    "dash-bootstrap-components",
+    "pandas",
+    "plotly",
+    "duckdb",
+    "gunicorn",
+]
 
 [project.scripts]
 dev-dashboard = "app.main:app.run"
