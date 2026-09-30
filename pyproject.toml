@@ -8,14 +8,17 @@ version = "0.1.0"
 description = "A Dash dashboard for pharmacy data served by the Camino datalake"
 requires-python = ">=3.13"
 dependencies = [
-    "dash>=2.17.0",
-    "dash-bootstrap-components",
-    "pandas",
-    "plotly",
-    "duckdb",
-    "gunicorn",
+    "dash>=2.17.0",              # dashboard framework
+    "dash-bootstrap-components", # bootstrap components for nicer looking webpages
+    "pandas",                    # for dataframes
+    "plotly",                    # for plots
+    "duckdb",                    # for connecting to the Camino datalake
+    "gunicorn",                  # production WSGI server for running the dashboard
 ]
 
 [project.scripts]
 dev-dashboard = "app.main:app.run"
 prod-dashboard = "gunicorn.app.wsgiapp:run"
+
+[dependency-groups]
+dev = ["prek>=0.5.4"]
