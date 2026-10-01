@@ -38,7 +38,7 @@ prek --all-files
 Tests are run with `pytest`.
 
 > [!NOTE]
-> In order run the selenium tests, you need a webdriver.
+> In order to run the selenium tests, you need a webdriver.
 > Either install one, e.g.
 > ```
 > brew install --cask chromedriver
