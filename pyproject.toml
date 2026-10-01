@@ -22,7 +22,11 @@ dev-dashboard = "app.main:app.run"
 [dependency-groups]
 dev = [
     "prek>=0.5.4",   # linting
-    "dash[testing]",
+    "dash[testing]", # uses selenium for some webdriver testing
     "pytest",
-    "selenium>4.6",  # already included in dash[testing], but we need a newer version to automatically get the webdriver
+    "selenium>4.6",
+    # ^^ already included in dash[testing], but we need a newer
+    # version to automatically get the webdriver this forces dash to be a
+    # prerelease version. When dash updates to the new selenium we can delete
+    # this and just pin dash minimum verison.
 ]
