@@ -11,6 +11,7 @@ services:
     environment:
       HTTP_PROXY: ${HTTP_PROXY:-}
       HTTPS_PROXY: ${HTTPS_PROXY:-}
+      CAMINO_ATTACH: ${CAMINO_ATTACH:?CAMINO_ATTACH must be set}
     ports:
       - "8050:8050"
     restart: unless-stopped
