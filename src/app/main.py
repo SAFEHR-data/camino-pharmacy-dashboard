@@ -1,9 +1,10 @@
-from dash import Dash, html, dcc, callback, Output, Input
+from dash import Dash, html
 import dash_bootstrap_components as dbc
-import plotly.express as px
-import pandas as pd
+import dash_ag_grid as dag
+import duckdb
 
-df = pd.read_csv("./gapminder_unfiltered.csv")
+conn = duckdb.connect("./dev/data/RestrictedAntimicrobials.csv")
+df = conn.sql("SELECT SIMPLE_GENERIC, SIMPLE_GENERIC_C FROM file").df()
 
 app = Dash(external_stylesheets=[dbc.themes.FLATLY])
 server = app.server
@@ -20,17 +21,18 @@ app.layout = dbc.Container(
             ],
             className="d-flex align-items-center justify-content-center gap-3 my-4",
         ),
-        dcc.Dropdown(df.country.unique(), "Canada", id="dropdown-selection"),
-        dcc.Graph(id="graph-content"),
+        dag.AgGrid(
+            id="data-grid",
+            rowData=df.to_dict("records"),
+            columnDefs=[{"field": column} for column in df.columns],
+            defaultColDef={"sortable": True, "filter": True, "resizable": True},
+            columnSize="autoSize",
+            dashGridOptions={"pagination": False, "domLayout": "autoHeight"},
+            style={"width": "450px", "margin": "0 auto"},
+        ),
     ],
     fluid=True,
 )
-
-
-@callback(Output("graph-content", "figure"), Input("dropdown-selection", "value"))
-def update_graph(value):
-    dff = df[df.country == value]
-    return px.line(dff, x="year", y="pop")
 
 
 if __name__ == "__main__":

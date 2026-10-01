@@ -47,7 +47,6 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-install-project --no-dev
 
 COPY --chown=${UID}:${GID} ./src/app/ /app/app/
-COPY --chown=${UID}:${GID} ./gapminder_unfiltered.csv /app/
 
 # Install the project itself so console-script entry points (e.g. prod-dashboard) are created
 RUN --mount=type=cache,target=/root/.cache/uv \
