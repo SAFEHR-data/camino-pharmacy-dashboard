@@ -5,48 +5,28 @@
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
 rev = "v0.15.20"
-hooks = [
-  { id = "ruff-check" },
-  { id = "ruff-format" }
-]
+hooks = [{ id = "ruff-check" }, { id = "ruff-format" }]
 
 [[repos]]
 repo = "https://github.com/Lucas-C/pre-commit-hooks"
 rev = "v1.5.6"
-hooks = [
-  { id = "forbid-tabs" },
-  { id = "remove-tabs" }
-]
-
-[[repos]]
-repo = "https://github.com/pappasam/toml-sort"
-rev = "v0.24.4"
-hooks = [
-  { id = "toml-sort-fix" }
-]
+hooks = [{ id = "forbid-tabs" }, { id = "remove-tabs" }]
 
 [[repos]]
 repo = "https://github.com/pre-commit/mirrors-mypy"
 rev = "v2.1.0"
-hooks = [
-  {
-    id = "mypy",
-    additional_dependencies = ["types-requests"]
-  }
-]
+hooks = [{ id = "mypy", additional_dependencies = ["types-requests"] }]
 
 [[repos]]
 repo = "https://github.com/rbubley/mirrors-prettier"
 rev = "v3.9.4"
 hooks = [
-  {
-    id = "prettier",
-    args = ["--quote-props=as-needed"],
-    exclude_types = [
-      "svg",
-      "markdown"
-    ]
-  }
+  { id = "prettier", args = [
+    "--quote-props=as-needed",
+  ], exclude_types = [
+    "svg",
+    "markdown",
+  ] },
 ]
 
 [[repos]]
@@ -57,13 +37,11 @@ hooks = [
   { id = "check-docstring-first" },
   { id = "check-merge-conflict" },
   { id = "check-toml" },
-  {
-    id = "end-of-file-fixer",
-    exclude_types = ["svg"]
-  },
-  {
-    id = "mixed-line-ending",
-    args = ["--fix=lf"]
-  },
-  { id = "trailing-whitespace" }
+  { id = "end-of-file-fixer", exclude_types = [
+    "svg",
+  ] },
+  { id = "mixed-line-ending", args = [
+    "--fix=lf",
+  ] },
+  { id = "trailing-whitespace" },
 ]

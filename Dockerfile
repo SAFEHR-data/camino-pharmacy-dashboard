@@ -33,8 +33,7 @@ RUN set -eux; \
     GROUPNAME=$(getent group ${GID} | cut -d: -f1); \
     fi; \
     useradd -u ${UID} -g ${GID} -s /bin/bash -d /app -M appuser; \
-    mkdir -p /app && chown -R ${UID}:${GID} /app && \
-    mkdir -p /data/staging /data/snapshots /data/camino /data/exports && chown -R ${UID}:${GID} /data
+    mkdir -p /app && chown -R ${UID}:${GID} /app
 
 WORKDIR /app
 
@@ -47,8 +46,7 @@ RUN uv venv
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-install-project --no-dev
 
-COPY --chown=${UID}:${GID} ./app/ /app/app/
-COPY --chown=${UID}:${GID} ./assets/ /app/app/assets/
+COPY --chown=${UID}:${GID} ./src/app/ /app/app/
 COPY --chown=${UID}:${GID} ./gapminder_unfiltered.csv /app/
 
 # Install the project itself so console-script entry points (e.g. prod-dashboard) are created
@@ -59,4 +57,4 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 ENV PATH="/app/.venv/bin:$PATH"
 
 FROM camino_base AS camino_bronze
-ENTRYPOINT ["prod-dashboard", "app.main:server", "--bind", "0.0.0.0:8050"]
+ENTRYPOINT ["gunicorn", "app.main:server", "--bind", "0.0.0.0:8050"]

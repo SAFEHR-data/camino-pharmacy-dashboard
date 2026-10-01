@@ -2,6 +2,9 @@
 build-backend = "setuptools.build_meta"
 requires = ["setuptools", "wheel"]
 
+[dependency-groups]
+dev = ["prek>=0.5.4"]
+
 [project]
 name = "camino-pharmacy-dashboard"
 version = "0.1.0"
@@ -18,7 +21,3 @@ dependencies = [
 
 [project.scripts]
 dev-dashboard = "app.main:app.run"
-prod-dashboard = "gunicorn.app.wsgiapp:run"
-
-[dependency-groups]
-dev = ["prek>=0.5.4"]
