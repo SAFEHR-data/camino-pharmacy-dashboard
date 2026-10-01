@@ -2,9 +2,6 @@
 build-backend = "setuptools.build_meta"
 requires = ["setuptools", "wheel"]
 
-[dependency-groups]
-dev = ["prek>=0.5.4"]
-
 [project]
 name = "camino-pharmacy-dashboard"
 version = "0.1.0"
@@ -21,3 +18,15 @@ dependencies = [
 
 [project.scripts]
 dev-dashboard = "app.main:app.run"
+
+[dependency-groups]
+dev = [
+    "prek>=0.5.4",   # linting
+    "dash[testing]", # uses selenium for some webdriver testing
+    "pytest",
+    "selenium>4.6",
+    # ^^ already included in dash[testing], but we need a newer
+    # version to automatically get the webdriver this forces dash to be a
+    # prerelease version. When dash updates to the new selenium we can delete
+    # this and just pin dash minimum verison.
+]
