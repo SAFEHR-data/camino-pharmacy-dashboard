@@ -13,6 +13,9 @@ jobs:
       - name: Setup ChromeDriver
         uses: nanasess/setup-chromedriver@e913548694400f275b4070efcd90f47dbbc8914c # v3.0.0
 
+      - name: Check ChromeDriver in a new step
+        run: chromedriver --version
+
       - name: Checkout source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
