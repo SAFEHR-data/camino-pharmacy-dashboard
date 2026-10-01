@@ -3,9 +3,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-e", "-u", "-x", "-c"]
 
 ARG UID
 ARG GID
-ARG HTTP_PROXY
-ARG HTTPS_PROXY
-ARG NO_PROXY
 
 RUN <<EOF
     export DEBIAN_FRONTEND=noninteractive &&
