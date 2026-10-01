@@ -14,6 +14,8 @@ dependencies = [
   "plotly",                    # for plots
   "duckdb",                    # for connecting to the Camino datalake
   "gunicorn",                  # production WSGI server for running the dashboard
+  "pydantic",
+  "pydantic-settings",         # managing the config settings (from environment)
 ]
 
 [project.scripts]
