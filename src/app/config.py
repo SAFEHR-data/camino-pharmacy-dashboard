@@ -5,7 +5,7 @@ __all__ = ["settings"]
 
 
 class Settings(BaseSettings):
-    HTTP_PROXY: str
+    HTTP_PROXY: str = ""
     CAMINO_ATTACH: SecretStr
 
     model_config = SettingsConfigDict(
