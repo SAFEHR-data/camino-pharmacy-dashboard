@@ -1,9 +1,9 @@
-from dash import Dash, html, dcc, callback, Output, Input
+from dash import Dash, dash_table, html
 import dash_bootstrap_components as dbc
-import plotly.express as px
-import pandas as pd
+import duckdb
 
-df = pd.read_csv("./gapminder_unfiltered.csv")
+conn = duckdb.connect("./dev/data/RestrictedAntimicrobials.csv")
+df = conn.sql("SELECT SIMPLE_GENERIC, SIMPLE_GENERIC_C FROM file").df()
 
 app = Dash(external_stylesheets=[dbc.themes.FLATLY])
 server = app.server
@@ -20,17 +20,35 @@ app.layout = dbc.Container(
             ],
             className="d-flex align-items-center justify-content-center gap-3 my-4",
         ),
-        dcc.Dropdown(df.country.unique(), "Canada", id="dropdown-selection"),
-        dcc.Graph(id="graph-content"),
+        dash_table.DataTable(
+            id="data-grid",
+            columns=[{"name": column, "id": column} for column in df.columns],
+            data=df.to_dict("records"),
+            sort_action="native",
+            filter_action="native",
+            style_table={"width": "fit-content", "margin": "0 auto"},
+            style_cell={
+                "fontFamily": "var(--bs-font-sans-serif)",
+                "fontSize": "0.95rem",
+                "color": "var(--bs-body-color)",
+                "textAlign": "left",
+                "padding": "0.65rem 0.85rem",
+            },
+            style_header={
+                "fontFamily": "var(--bs-font-sans-serif)",
+                "fontWeight": "600",
+                "color": "var(--bs-emphasis-color)",
+                "backgroundColor": "var(--bs-tertiary-bg)",
+                "borderBottom": "2px solid var(--bs-border-color)",
+            },
+            style_cell_conditional=[
+                {"if": {"column_id": "SIMPLE_GENERIC"}, "width": "260px"},
+                {"if": {"column_id": "SIMPLE_GENERIC_C"}, "width": "180px"},
+            ],
+        ),
     ],
     fluid=True,
 )
-
-
-@callback(Output("graph-content", "figure"), Input("dropdown-selection", "value"))
-def update_graph(value):
-    dff = df[df.country == value]
-    return px.line(dff, x="year", y="pop")
 
 
 if __name__ == "__main__":
