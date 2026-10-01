@@ -1,7 +1,3 @@
-"""Camino configuration via environment variables."""
-
-from pathlib import Path
-
 from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
