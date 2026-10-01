@@ -25,7 +25,7 @@ Every time you make a change to the code, the server should automatically reload
 Changes to the codebase by pull request.
 And check the linters and tests pass before merging.
 
-Linters are run with [`prek`](./.pre-commit-config.yaml).
+Linters are run with [`prek`](./prek.toml).
 ```
 uv run prek --all-files
 ```
