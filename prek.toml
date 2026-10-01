@@ -1,69 +1,56 @@
 # Configuration file for `prek`, a git hook framework written in Rust.
 # See https://prek.j178.dev for more information.
-#:schema https://www.schemastore.org/prek.json
+# :schema https://www.schemastore.org/prek.json
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
 rev = "v0.15.20"
 hooks = [
-  { id = "ruff-check" },
-  { id = "ruff-format" }
+  {id = "ruff-check"},
+  {id = "ruff-format"}
 ]
 
 [[repos]]
 repo = "https://github.com/Lucas-C/pre-commit-hooks"
 rev = "v1.5.6"
 hooks = [
-  { id = "forbid-tabs" },
-  { id = "remove-tabs" }
+  {id = "forbid-tabs"},
+  {id = "remove-tabs"}
 ]
 
 [[repos]]
 repo = "https://github.com/pappasam/toml-sort"
 rev = "v0.24.4"
 hooks = [
-  { id = "toml-sort-fix" }
+  {id = "toml-sort-fix"}
 ]
 
 [[repos]]
 repo = "https://github.com/pre-commit/mirrors-mypy"
 rev = "v2.1.0"
 hooks = [
-  {
-    id = "mypy",
-    additional_dependencies = ["types-requests"]
-  }
+  {id = "mypy", additional_dependencies = ["types-requests"]}
 ]
 
 [[repos]]
 repo = "https://github.com/rbubley/mirrors-prettier"
 rev = "v3.9.4"
 hooks = [
-  {
-    id = "prettier",
-    args = ["--quote-props=as-needed"],
-    exclude_types = [
-      "svg",
-      "markdown"
-    ]
-  }
+  {id = "prettier", args = ["--quote-props=as-needed"], exclude_types = [
+    "svg",
+    "markdown"
+  ]}
 ]
 
 [[repos]]
 repo = "https://github.com/pre-commit/pre-commit-hooks"
 rev = "v6.0.0"
 hooks = [
-  { id = "check-case-conflict" },
-  { id = "check-docstring-first" },
-  { id = "check-merge-conflict" },
-  { id = "check-toml" },
-  {
-    id = "end-of-file-fixer",
-    exclude_types = ["svg"]
-  },
-  {
-    id = "mixed-line-ending",
-    args = ["--fix=lf"]
-  },
-  { id = "trailing-whitespace" }
+  {id = "check-case-conflict"},
+  {id = "check-docstring-first"},
+  {id = "check-merge-conflict"},
+  {id = "check-toml"},
+  {id = "end-of-file-fixer", exclude_types = ["svg"]},
+  {id = "mixed-line-ending", args = ["--fix=lf"]},
+  {id = "trailing-whitespace"}
 ]

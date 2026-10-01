@@ -1,5 +1,7 @@
+.env # never commit the real environment!
+
 .venv/
 .mypy_cache/
 *.egg-info
 */__pycache__/
-.env
+*.pyc
