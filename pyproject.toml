@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.scripts]
-dev-dashboard = "app.main:app.run"
+dev-dashboard = "app.main:main"
 
 [dependency-groups]
 dev = [
