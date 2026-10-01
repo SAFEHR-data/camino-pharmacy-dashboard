@@ -20,4 +20,9 @@ dependencies = [
 dev-dashboard = "app.main:app.run"
 
 [dependency-groups]
-dev = ["prek>=0.5.4", "dash[testing]", "pytest"]
+dev = [
+    "prek>=0.5.4",   # linting
+    "dash[testing]",
+    "pytest",
+    "selenium>4.6",  # already included in dash[testing], but we need a newer version to automatically get the webdriver
+]

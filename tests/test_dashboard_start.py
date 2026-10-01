@@ -1,12 +1,14 @@
+import pytest
 from app.main import app
 
 
+@pytest.mark.filterwarnings("ignore")
 def test_start_server_no_errors(dash_duo) -> None:
     """A minimal smoke test: launching the wazp webapp should startup, and
     display the page content without error.
 
     Parameters:
-        dash_duo: Default fixture for Dash Python integration tests.
+        dash_duo: Driver fixture for Dash Python integration tests.
     """
     dash_duo.start_server(app)
     dash_duo.wait_for_text_to_equal("h1", "Camino Pharmacy Dashboard", timeout=4)
